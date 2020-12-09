@@ -1,0 +1,17 @@
+.video {
+  width: 179% !important;
+  /* height: 1000px !important; */
+}
+
+/* .video-cropper {
+  overflow: hidden;
+  border-radius: 50%;
+  width: 500px;
+  height: 500px;
+  background-color: red;
+
+  display: flex;
+  justify-content: center;
+
+  position: absolute;
+} */

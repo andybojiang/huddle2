@@ -1,0 +1,130 @@
+{
+  "name": "twilio-video-app-react",
+  "version": "0.1.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@amplitude/react-amplitude": "^1.0.0",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@primer/octicons-react": "^9.6.0",
+    "@reduxjs/toolkit": "^1.4.0",
+    "@types/amplitude-js": "^5.11.0",
+    "@types/bytebuffer": "^5.0.41",
+    "@types/d3-timer": "^1.0.9",
+    "@types/fscreen": "^1.0.1",
+    "@types/jest": "^24.9.1",
+    "@types/lodash.throttle": "^4.1.6",
+    "@types/node": "^12.12.54",
+    "@types/react": "^16.9.46",
+    "@types/react-amplitude": "^0.1.0",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-linkify": "^1.0.0",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/twilio-video": "^2.7.0",
+    "amplitude-js": "^7.1.1",
+    "axios": "^0.19.2",
+    "concurrently": "^5.3.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
+    "d3-timer": "^1.0.10",
+    "express": "^4.17.1",
+    "firebase": "^7.18.0",
+    "fscreen": "^1.0.2",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
+    "lodash.throttle": "^4.1.1",
+    "prettier": "^1.19.1",
+    "react": "^16.13.1",
+    "react-amplitude": "^0.1.7",
+    "react-dom": "^16.13.1",
+    "react-linkify": "^1.0.0-alpha",
+    "react-notifications": "^1.6.0",
+    "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.3",
+    "reactjs-popup": "^1.5.0",
+    "redux": "^4.0.5",
+    "strip-color": "^0.1.0",
+    "twilio": "^3.49.0",
+    "twilio-video": "^2.7.2",
+    "typescript": "^3.9.7",
+    "use-react-router": "^1.0.7"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/react-hooks": "^3.4.1",
+    "@types/enzyme": "^3.10.5",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
+    "cypress": "^3.8.3",
+    "cypress-multi-reporters": "^1.4.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.3",
+    "enzyme-to-json": "^3.5.0",
+    "isomorphic-fetch": "^2.2.1",
+    "jest-junit": "^9.0.0",
+    "mocha": "^6.2.3",
+    "mocha-junit-reporter": "^1.23.3",
+    "pixelmatch": "^5.2.1",
+    "puppeteer": "^2.1.1",
+    "react-test-renderer": "^16.13.1",
+    "redux-devtools": "^3.6.1",
+    "start-server-and-test": "^1.11.3",
+    "ts-jest": "^24.3.0"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "scripts": {
+    "start": "concurrently npm:server npm:dev",
+    "dev": "react-scripts start",
+    "build": "node ./scripts/build.js",
+    "test": "jest",
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.{ts,tsx}",
+    "server": "node server.js",
+    "test:ci": "jest --ci --runInBand --reporters=default --reporters=jest-junit --coverage",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run --browser chrome",
+    "cypress:ci": "cross-env CYPRESS_baseUrl=http://localhost:8081 start-server-and-test server http://localhost:8081 cypress:run",
+    "deploy:twilio-cli": "cross-env REACT_APP_SET_AUTH=passcode npm run build && twilio rtc:apps:video:deploy --authentication=passcode --app-directory ./build"
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "rules": {
+      "no-shadow": "warn"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "proxy": "http://localhost:8081/",
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
+  "pkg": {
+    "assets": [
+      "file-to-leave-sources-in-executable.js"
+    ]
+  }
+}
